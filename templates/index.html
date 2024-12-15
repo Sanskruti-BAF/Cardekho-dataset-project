@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #50b3a2;
+            color: #ffffff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #e8491d 3px solid;
+        }
+        header a {
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        .form-container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+        .form-container h2 {
+            margin-top: 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .btn {
+            background: #50b3a2;
+            color: #ffffff;
+            border: 0;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background: #e8491d;
+        }
+        .output {
+            background: #e2e2e2;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Car Price Prediction</h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="form-container">
+            <h2>Enter Car Details</h2>
+            <form action="/predict" method="post">
+                <div class="form-group">
+                    <label for="Year">Year</label>
+                    <input type="number" name="Year" id="Year" required>
+                </div>
+                <div class="form-group">
+                    <label for="Present_Price">Present Price (in Lakhs)</label>
+                    <input type="number" step="0.01" name="Present_Price" id="Present_Price" required>
+                </div>
+                <div class="form-group">
+                    <label for="Kms_Driven">Kilometers Driven</label>
+                    <input type="number" name="Kms_Driven" id="Kms_Driven" required>
+                </div>
+                <div class="form-group">
+                    <label for="Owner">Number of Owners</label>
+                    <input type="number" name="Owner" id="Owner" required>
+                </div>
+                <div class="form-group">
+                    <label for="Fuel_Type_Petrol">Fuel Type</label>
+                    <select name="Fuel_Type_Petrol" id="Fuel_Type_Petrol" required>
+                        <option value="Petrol">Petrol</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="CNG">CNG</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Seller_Type_Individual">Seller Type</label>
+                    <select name="Seller_Type_Individual" id="Seller_Type_Individual" required>
+                        <option value="Individual">Individual</option>
+                        <option value="Dealer">Dealer</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Transmission_Mannual">Transmission</label>
+                    <select name="Transmission_Mannual" id="Transmission_Mannual" required>
+                        <option value="Mannual">Manual</option>
+                        <option value="Automatic">Automatic</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Predict Price</button>
+            </form>
+            {% if prediction_text %}
+            <div class="output">
+                <h3>{{ prediction_text }}</h3>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
